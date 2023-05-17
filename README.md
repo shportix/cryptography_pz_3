@@ -60,7 +60,7 @@
 
 Скріншоти прикладів запуску програми з результатами її виконання:
 
-![image](https://github.com/shportix/cryptography_pz_3/assets/56202290/5d7fc5e4-62f9-4cd7-9955-6d17499ce4d0)
+![image](https://github.com/shportix/cryptography_pz_3/assets/56202290/b5516d74-0ba5-4270-bf67-8238c4da2e33)
 
 ![image](https://github.com/shportix/cryptography_pz_3/assets/56202290/7dfad4d1-7052-4253-9430-0e8bb161b476)
 
