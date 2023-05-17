@@ -54,7 +54,7 @@ def p_blocks_encryption(plaintext, key, plaintext_type="ascii"):
     :param plaintext: оригінальне повідомлення, може бути у вигляді ascii тексту або стрінгом парної довжини,
     що складається з шістнадцятирічних цифр
     :param key: ключ щифрувння, може бути цілим числом (тоді буде виконано циклічний зсув на модуль цього числа,
-    в право якщо число додатне, в ліво - якщо від'ємне ), або чтрінго зі зазначеним порядком перестановки
+    в право якщо число додатне, в ліво - якщо від'ємне, що по суті теж є перестановкою), або стрінгом зі зазначеним порядка перестановки
     :param plaintext_type: тип оригінального повідомлення, може бути 'ascii', або 'hex' (hexadecimal)
     :return: зашифроване повідомлення
     """
@@ -329,18 +329,22 @@ if __name__ == '__main__':
                        ["5e", "92", "84", "a3", "fc", "11", "65", "00", "f9", "68", "ab", "c7", "fa", "c3", "b2", "52"],
                        ["8c", "85", "ee", "3e", "3b", "1a", "a0", "46", "be", "98", "77", "8f", "5c", "4f", "56", "22"]]
         dec = "0123456789"
-        if len(p_blocks_key) == 1 and p_blocks_key in dec:
+        if (len(p_blocks_key) == 1 and p_blocks_key in dec) \
+                or (len(p_blocks_key) == 2 and p_blocks_key[1] in dec and p_blocks_key[0] == "-"):
             p_blocks_key = int(p_blocks_key)
         cipher_p = p_blocks_encryption(plaintext_p, p_blocks_key, plaintext_type_p)
         cipher_s = s_blocks_encryption(plaintext_s, s_block_key, plaintext_type_s)
         print("Шифрування за допомогою p-блоків:")
         print(f"оригінальне повідомлення: {plaintext_p};\nотриманий шифротекст: {cipher_p};")
+        print()
         print("Шифрування за допомогою s-блоків:")
         print(f"оригінальне повідомлення: {plaintext_s};\nотриманий шифротекст: {cipher_s};")
         plaintext_p = p_blocks_decryption(cipher_p, p_blocks_key, plaintext_type_p)
         plaintext_s = s_blocks_decryption(cipher_s, s_block_key, plaintext_type_s)
+        print()
         print("Розшифрування за допомогою p-блоків:")
         print(f"шифротекст: {cipher_p};\nотримане дешифроване повідомлення: {plaintext_p};")
+        print()
         print("Розшифрування за допомогою s-блоків:")
         print(f"шифротекст: {cipher_s};\nотримане дешифроване повідомлення: {plaintext_s};")
 
